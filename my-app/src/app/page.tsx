@@ -50,17 +50,17 @@ export default function HomePage() {
 
 
   return (
-    <main>
+    <main className="min-h-screen bg-gray-900 text-gray-100 p-6">
       <Card system={system}>
-        <h1 className="text-3xl font-bold mb-4">Criação de Fichas de RPG</h1>
-        <div>
-          <label>Selecione o Sistema: </label>
-          <select value={system} onChange={handleSystemChange}>
+        <h1 className="text-3xl font-bold mb-4 text-center">Criação de Fichas de RPG</h1>
+        <div className="mb-6">
+          <label className="block text-lg font-semibold mb-2">Selecione o Sistema: </label>
+          <select value={system} onChange={handleSystemChange} className="bg-gray-700 text-gray-100 rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500">
             <option value="dnd5e">D&D 5E</option>
             <option value="vampire">Vampire: The Masquerade</option>
           </select>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4">
           {!character ? (
             <CharacterForm config={config} onSubmit={handleCharacterSubmit} />
           ) : (
