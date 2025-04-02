@@ -3,6 +3,7 @@ import { useState } from 'react';
 import CharacterForm from '../components/CharacterForm';
 import CharacterSheet from '../components/CharacterSheet';
 import { dnd5eConfig } from '../data/dnd5eConfig';
+import { vampireConfig } from '../data/vampireConfig'; //Importe a configuração do sistema Vampire: The Masquerade
 //Você também pode importar configurações para outros sistemas, como Pathfinder, Starfinder, vampire, etc.
 
 //Se desejar, defina uma interface para os dados do personagem
@@ -39,7 +40,13 @@ export default function HomePage() {
   };
 
   //Seleciona a configuração baseada no sistema escolhido
-  const config = system === 'dnd5e' ? dnd5eConfig : {}; //Expanda para outros sistemas
+  let config = {};
+  if (system === 'dnd5e') {
+    config = dnd5eConfig;
+  } else if (system === 'vampire') {
+    config = vampireConfig; //Use a configuração do sistema Vampire: The Masquerade
+  }
+
 
   return (
     <main>

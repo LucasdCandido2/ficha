@@ -1,4 +1,4 @@
-(globalThis.TURBOPACK = globalThis.TURBOPACK || []).push(["static/chunks/_458ff0cc._.js", {
+(globalThis.TURBOPACK = globalThis.TURBOPACK || []).push(["static/chunks/_347873ff._.js", {
 
 "[project]/src/components/CharacterForm.jsx [app-client] (ecmascript)": ((__turbopack_context__) => {
 "use strict";
@@ -484,185 +484,6 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
     __turbopack_context__.k.registerExports(module, globalThis.$RefreshHelpers$);
 }
 }}),
-"[project]/src/data/dnd5eConfig.js [app-client] (ecmascript)": ((__turbopack_context__) => {
-"use strict";
-
-var { g: global, __dirname, k: __turbopack_refresh__, m: module } = __turbopack_context__;
-{
-__turbopack_context__.s({
-    "dnd5eConfig": (()=>dnd5eConfig)
-});
-const dnd5eConfig = {
-    title: 'Ficha de Personagem D&D 5E',
-    fields: [
-        {
-            name: 'nomePersonagem',
-            label: 'Nome do Personagem',
-            type: 'text'
-        },
-        {
-            name: 'raca',
-            label: 'Raça',
-            type: 'text'
-        },
-        {
-            name: 'classe',
-            label: 'Classe',
-            type: 'text'
-        },
-        {
-            name: 'nivel',
-            label: 'Nivel',
-            type: 'number',
-            min: 1
-        },
-        {
-            name: 'atributos',
-            label: 'Atributos',
-            type: 'group',
-            fields: [
-                {
-                    name: 'forca',
-                    label: 'Força',
-                    type: 'number',
-                    min: 1
-                },
-                {
-                    name: 'destreza',
-                    label: 'Destreza',
-                    type: 'number',
-                    min: 1
-                },
-                {
-                    name: 'constituicao',
-                    label: 'Constituição',
-                    type: 'number',
-                    min: 1
-                },
-                {
-                    name: 'inteligencia',
-                    label: 'Inteligência',
-                    type: 'number',
-                    min: 1
-                },
-                {
-                    name: 'sabedoria',
-                    label: 'Sabedoria',
-                    type: 'number',
-                    min: 1
-                },
-                {
-                    name: 'carisma',
-                    label: 'Carisma',
-                    type: 'number',
-                    min: 1
-                }
-            ]
-        },
-        {
-            name: 'pontosVida',
-            label: 'Pontos de Vida',
-            type: 'number',
-            min: 1
-        },
-        {
-            name: 'nivelMagia',
-            label: 'Nivel de Magia',
-            type: 'number',
-            min: 1
-        },
-        {
-            name: 'pericias',
-            label: 'Perícias',
-            type: 'group',
-            fields: [
-                {
-                    name: 'atletismo',
-                    label: 'Atletismo',
-                    type: 'checkbox'
-                },
-                {
-                    name: 'acrobacia',
-                    label: 'Acrobacia',
-                    type: 'checkbox'
-                },
-                {
-                    name: 'furtividade',
-                    label: 'Furtividade',
-                    type: 'checkbox'
-                },
-                {
-                    name: 'percepcao',
-                    label: 'Percepção',
-                    type: 'checkbox'
-                },
-                {
-                    name: 'intimidacao',
-                    label: 'Intimidação',
-                    type: 'checkbox'
-                },
-                {
-                    name: 'enganacao',
-                    label: 'Enganação',
-                    type: 'checkbox'
-                }
-            ]
-        },
-        {
-            name: 'equipamentos',
-            label: 'Equipamentos',
-            type: 'group',
-            fields: [
-                {
-                    name: 'armas',
-                    label: 'Armas',
-                    type: 'text'
-                },
-                {
-                    name: 'armaduras',
-                    label: 'Armaduras',
-                    type: 'text'
-                },
-                {
-                    name: 'itens',
-                    label: 'Itens',
-                    type: 'text'
-                }
-            ]
-        },
-        {
-            name: 'habilidades',
-            label: 'Habilidades Especiais',
-            type: 'group',
-            fields: [
-                {
-                    name: 'habilidade1',
-                    label: 'Habilidade 1',
-                    type: 'text'
-                },
-                {
-                    name: 'habilidade2',
-                    label: 'Habilidade 2',
-                    type: 'text'
-                },
-                {
-                    name: 'habilidade3',
-                    label: 'Habilidade 3',
-                    type: 'text'
-                }
-            ]
-        },
-        {
-            name: 'historico',
-            label: 'Histórico',
-            type: 'textarea'
-        }
-    ]
-};
-if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
-    __turbopack_context__.k.registerExports(module, globalThis.$RefreshHelpers$);
-}
-}}),
 "[project]/src/app/page.tsx [app-client] (ecmascript)": ((__turbopack_context__) => {
 "use strict";
 
@@ -675,11 +496,9 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$CharacterForm$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/CharacterForm.jsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$CharacterSheet$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/CharacterSheet.jsx [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$dnd5eConfig$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/data/dnd5eConfig.js [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 'use client';
-;
 ;
 ;
 ;
@@ -696,81 +515,78 @@ function HomePage() {
     };
     //Seleciona a configuração baseada no sistema escolhido
     let config = {};
-    if (system === 'dnd5e') {
-        config = __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$dnd5eConfig$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["dnd5eConfig"];
-    } else if (system === 'vampire') {
-        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
-            children: [
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                    children: "Criação de Fichas de RPG"
-                }, void 0, false, {
-                    fileName: "[project]/src/app/page.tsx",
-                    lineNumber: 51,
-                    columnNumber: 7
-                }, this),
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                            children: "Selecione o Sistema: "
-                        }, void 0, false, {
-                            fileName: "[project]/src/app/page.tsx",
-                            lineNumber: 53,
-                            columnNumber: 9
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
-                            value: system,
-                            onChange: handleSystemChange,
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
-                                    value: "dnd5e",
-                                    children: "D&D 5E"
-                                }, void 0, false, {
-                                    fileName: "[project]/src/app/page.tsx",
-                                    lineNumber: 55,
-                                    columnNumber: 11
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
-                                    value: "vampire",
-                                    children: "Vampire: The Masquerade"
-                                }, void 0, false, {
-                                    fileName: "[project]/src/app/page.tsx",
-                                    lineNumber: 56,
-                                    columnNumber: 11
-                                }, this)
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/src/app/page.tsx",
-                            lineNumber: 54,
-                            columnNumber: 9
-                        }, this)
-                    ]
-                }, void 0, true, {
-                    fileName: "[project]/src/app/page.tsx",
-                    lineNumber: 52,
-                    columnNumber: 7
-                }, this),
-                !character ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$CharacterForm$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                    config: config,
-                    onSubmit: handleCharacterSubmit
-                }, void 0, false, {
-                    fileName: "[project]/src/app/page.tsx",
-                    lineNumber: 60,
-                    columnNumber: 9
-                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$CharacterSheet$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                    character: character,
-                    config: config
-                }, void 0, false, {
-                    fileName: "[project]/src/app/page.tsx",
-                    lineNumber: 62,
-                    columnNumber: 9
-                }, this)
-            ]
-        }, void 0, true, {
-            fileName: "[project]/src/app/page.tsx",
-            lineNumber: 50,
-            columnNumber: 5
-        }, this);
-    }
+    if (system === 'dnd5e') {}
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                children: "Criação de Fichas de RPG"
+            }, void 0, false, {
+                fileName: "[project]/src/app/page.tsx",
+                lineNumber: 50,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                        children: "Selecione o Sistema: "
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/page.tsx",
+                        lineNumber: 52,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
+                        value: system,
+                        onChange: handleSystemChange,
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                value: "dnd5e",
+                                children: "D&D 5E"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/page.tsx",
+                                lineNumber: 54,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                value: "vampire",
+                                children: "Vampire: The Masquerade"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/page.tsx",
+                                lineNumber: 55,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/app/page.tsx",
+                        lineNumber: 53,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/app/page.tsx",
+                lineNumber: 51,
+                columnNumber: 7
+            }, this),
+            !character ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$CharacterForm$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                config: config,
+                onSubmit: handleCharacterSubmit
+            }, void 0, false, {
+                fileName: "[project]/src/app/page.tsx",
+                lineNumber: 59,
+                columnNumber: 9
+            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$CharacterSheet$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                character: character,
+                config: config
+            }, void 0, false, {
+                fileName: "[project]/src/app/page.tsx",
+                lineNumber: 61,
+                columnNumber: 9
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "[project]/src/app/page.tsx",
+        lineNumber: 49,
+        columnNumber: 5
+    }, this);
 }
 _s(HomePage, "1oPpQqtqc936kNc9r+RDrZAbUh0=");
 _c = HomePage;
@@ -988,4 +804,4 @@ if ("TURBOPACK compile-time falsy", 0) {
 }}),
 }]);
 
-//# sourceMappingURL=_458ff0cc._.js.map
+//# sourceMappingURL=_347873ff._.js.map
