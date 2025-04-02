@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import CharacterForm from '../components/CharacterForm';
 import CharacterSheet from '../components/CharacterSheet';
+import Card from "../components/Card";
 import { dnd5eConfig } from '../data/dnd5eConfig';
 import { vampireConfig } from '../data/vampireConfig'; //Importe a configuração do sistema Vampire: The Masquerade
 //Você também pode importar configurações para outros sistemas, como Pathfinder, Starfinder, vampire, etc.
@@ -50,21 +51,25 @@ export default function HomePage() {
 
   return (
     <main>
-      <h1>Criação de Fichas de RPG</h1>
-      <div>
-        <label>Selecione o Sistema: </label>
-        <select value={system} onChange={handleSystemChange}>
-          <option value="dnd5e">D&D 5E</option>
-          <option value="vampire">Vampire: The Masquerade</option>
-        </select>
-      </div>
-      {!character ? (
-        <CharacterForm config={config} onSubmit={handleCharacterSubmit} />
-      ) : (
-        <CharacterSheet character={character} config={config} />
-      )}
+      <Card system={system}>
+        <h1 className="text-3xl font-bold mb-4">Criação de Fichas de RPG</h1>
+        <div>
+          <label>Selecione o Sistema: </label>
+          <select value={system} onChange={handleSystemChange}>
+            <option value="dnd5e">D&D 5E</option>
+            <option value="vampire">Vampire: The Masquerade</option>
+          </select>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {!character ? (
+            <CharacterForm config={config} onSubmit={handleCharacterSubmit} />
+          ) : (
+            <CharacterSheet character={character} config={config} />
+          )}
+        </div>
+      </Card>
     </main>
   );
 
-  
+
 } 

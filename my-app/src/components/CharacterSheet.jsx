@@ -2,12 +2,12 @@ import {calcularBonus} from '../utils/calculos';
 
 export default function CharacterSheet({ character, config}) {
     return (
-        <div>
-            <h2>{config.title} - Ficha Completa</h2>
-            <p><strong>Nome:</strong> {character.nomePersonagem}</p>
-            <p><strong>Raça:</strong> {character.raca}</p>
-            <p><strong>Classe:</strong> {character.classe}</p>
-            <p><strong>Nivel:</strong> {character.nivel}</p>
+        <div className="p-6 bg-gray-800 rounded-md shadow-md">
+            <h2 className="text-2xl font-bold mb-4">{config.title} - Ficha Completa</h2>
+            <p className="mb-2"><strong>Nome:</strong> {character.nomePersonagem}</p>
+            <p className="mb-2"><strong>Raça:</strong> {character.raca}</p>
+            <p className="mb-2"><strong>Classe:</strong> {character.classe}</p>
+            <p className="mb-2"><strong>Nivel:</strong> {character.nivel}</p>
             {character.atributos && (
                 <div>
                     <h3>Atributos</h3>
