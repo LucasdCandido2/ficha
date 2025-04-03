@@ -1,75 +1,53 @@
-'use client';
-import { useState } from 'react';
-import CharacterForm from '../components/CharacterForm';
-import CharacterSheet from '../components/CharacterSheet';
-import Card from "../components/Card";
-import { dnd5eConfig } from '../data/dnd5eConfig';
-import { vampireConfig } from '../data/vampireConfig'; //Importe a configuração do sistema Vampire: The Masquerade
-//Você também pode importar configurações para outros sistemas, como Pathfinder, Starfinder, vampire, etc.
+'use cliente';
+import Link from 'next/link';
+import Card from '../components/Card';
 
-//Se desejar, defina uma interface para os dados do personagem
-interface CharacterData {
-  nomePersonagem?: string;
-  classe?: string;
-  nivel?: number;
-  raca?: string;
-  background?: string;
-  atributos?: {
-    forca?: number;
-    destreza?: number;
-    constituicao?: number;
-    inteligencia?: number;
-    sabedoria?: number;
-    carisma?: number;
-  };
-  habilidades?: string[];
-  equipamentos?: string[];
-  feitiços?: string[];
+const systems = [
+    {
+        id: 'dnd5e',
+        name: 'Dungeons & Dragons 5E',
+        description: 'Sistema classico de fantasia medieval',
+        color: 'bg-dnd-primary'
+    },
+    {
+        id: 'vampire',
+        name: 'Vampire: The Masquerade',
+        description: 'RPG de horror pessoal e conspiração',
+        color: 'bg-vampire-primary'
+    }
+];
+
+export default function LandingPage() {
+    const handleNewSystem = () => {
+        //Logica temporaria - pode ser um modal ou redirecionamento
+        console.log('Novo sistema clicado');
+    };
+    return (
+        <main className="min-h-screen bg-gray-900 text-gray-100 p-6">
+            <div className="max-w-4xl mx-auto">
+                <h1 className="text-4xl font-bold mb-8 text-center">Escolha Seu Sitema RPG</h1>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    {systems.map((system) => (
+                        <Link
+                            key={system.id}
+                            href={`/creator/${system.id}`}
+                            className={`${system.color} p-6 rounded-lg transform transition hover:scale-105`}
+                        >
+                            <h2 className="text-2xl font-bold mb-2">{system.name}</h2>
+                            <p className="text-gray-200">{system.description}</p>
+                        </Link>
+                    ))}
+                </div>
+                <div className="text-center">
+                    <button
+                        className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg"
+                        // onClick={handleNewSystem}
+                    >
+                        + Criar Novo Sistema
+                    </button>
+                </div>
+            </div>
+        </main>
+    );
 }
-
-export default function HomePage() {
-  const [system, setSystem] = useState('dnd5e');
-  const [character, setCharacter] = useState<CharacterData | null>(null);
-
-  const handleSystemChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setCharacter(null);
-    setSystem(e.target.value);
-  };
-
-  const handleCharacterSubmit = (data: CharacterData) => {
-    setCharacter(data);
-  };
-
-  //Seleciona a configuração baseada no sistema escolhido
-  let config = {};
-  if (system === 'dnd5e') {
-    config = dnd5eConfig;
-  } else if (system === 'vampire') {
-    config = vampireConfig; //Use a configuração do sistema Vampire: The Masquerade
-  }
-
-
-  return (
-    <main className="min-h-screen bg-gray-900 text-gray-100 p-6">
-      <Card system={system}>
-        <h1 className="text-3xl font-bold mb-4 text-center">Criação de Fichas de RPG</h1>
-        <div className="mb-6">
-          <label className="block text-lg font-semibold mb-2">Selecione o Sistema: </label>
-          <select value={system} onChange={handleSystemChange} className="bg-gray-700 text-gray-100 rounded px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500">
-            <option value="dnd5e">D&D 5E</option>
-            <option value="vampire">Vampire: The Masquerade</option>
-          </select>
-        </div>
-        <div className="grid grid-cols-1 gap-4">
-          {!character ? (
-            <CharacterForm config={config} onSubmit={handleCharacterSubmit} />
-          ) : (
-            <CharacterSheet character={character} config={config} />
-          )}
-        </div>
-      </Card>
-    </main>
-  );
-
-
-} 

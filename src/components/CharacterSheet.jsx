@@ -11,9 +11,9 @@ export default function CharacterSheet({ character, config }) {
             {character.atributos && (
                 <div className="mb-4">
                     <h3 className="text-xl font-semibold mb-2">Atributos</h3>
-                    {Object.entries(character.atributos).map(([KeyboardEvent, value]) => (
+                    {Object.entries(character.atributos).map(([key, value]) => (
                         <p key={key} className="mb-1">
-                            <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {value} (Bônus: {calcularBonus(Number(value))})
+                            <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {value}
                         </p>
                     ))}
                 </div>
