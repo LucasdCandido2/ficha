@@ -11,15 +11,18 @@ const systemThemes = {
 };
 
 module.exports = {
-    content: ['./src/**/*.{js,ts,jsx,tsx}'],
+    content: [
+        './src/**/*.{js,ts,jsx,tsx}',
+        './public/**/*.html'
+    ],
     theme: {
         extend: {
             colors: {
-                ...Object.entries(systemThemes).reduce((acc, [key, value]) => {
-                    acc[key] = value;
-                    return acc;
-                }, {})
-            },
+                'dnd-primary': systemThemes.dnd5e.primary,
+                'dnd-secondary': systemThemes.dnd5e.secondary,
+                'vampire-primary': systemThemes.vampire.primary,
+                'vampire-secondary': systemThemes.vampire.secondary
+            }
         }
     },
     plugins: [],

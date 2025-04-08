@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+
+
 export default function CharacterForm({ config, onSubmit }) {
   const [formData, setFormData] = useState({});
 

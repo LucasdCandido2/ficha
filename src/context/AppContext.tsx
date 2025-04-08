@@ -1,15 +1,17 @@
 'use client';
 
 import { createContext, useContext, useState } from 'react';
+import { RPGSystem } from '@/types/system';
 
-type AppContextType = {
+interface AppContextType {
     currentSystem: string;
-    SetCurrentSystem: (system: string) => void;
-    customSystems: any[];
-    addNewSystem: (system: any) => void;
-};
+    setCurrentSystem: (system: string) => void; // Nome corrigido
+    customSystems: RPGSystem[];
+    addNewSystem: (system: RPGSystem) => void;
+}
 
-const AppContext = createContext<appContextType>({} as AppContextType);
+// Corrigir a criação do contexto
+const AppContext = createContext<AppContextType>({} as AppContextType);
 
 export function AppProvider({ children }: { children: React.ReactNode }) {
     const [currentSystem, setCurrentSystem] = useState('dnd5e');

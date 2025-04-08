@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { AppProvider } from '@/context/AppContext';
 
 // Carrega as fontes do Google com variáveis CSS
 const geistSans = Geist({
@@ -33,18 +34,20 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning={true}
       >
-        {/* Container principal com estilo para melhorar a UI */}
-        <div className="min-h-screen bg-gray-900 text-gray-100">
-          <header className="bg-gray-800 p-4">
-            <h1 className="text-3xl font-bold text-center">Meu Projeto de Fichas de RPG</h1>
-          </header>
-          <main className="max-w-5xl mx-auto p-6">
-            {children}
-          </main>
-          <footer className="bg-gray-800 p-4 text-center text-sm text-gray-400">
-            © {new Date().getFullYear()} Meu Projeto de RPG
-          </footer>
-        </div>
+        <AppProvider>
+          {/* Container principal com estilo para melhorar a UI */}
+          <div className="min-h-screen bg-gray-900 text-gray-100">
+            <header className="bg-gray-800 p-4">
+              <h1 className="text-3xl font-bold text-center">Meu Projeto de Fichas de RPG</h1>
+            </header>
+            <main className="max-w-5xl mx-auto p-6">
+              {children}
+            </main>
+            <footer className="bg-gray-800 p-4 text-center text-sm text-gray-400">
+              © {new Date().getFullYear()} Meu Projeto de RPG
+            </footer>
+          </div>
+        </AppProvider>
       </body>
     </html>
   );

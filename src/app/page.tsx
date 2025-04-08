@@ -1,6 +1,8 @@
-'use cliente';
+'use client';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import Card from '../components/Card';
+// import router from 'next/router';
 
 const systems = [
     {
@@ -18,14 +20,17 @@ const systems = [
 ];
 
 export default function LandingPage() {
+    const router = useRouter();
+
     const handleNewSystem = () => {
-        //Logica temporaria - pode ser um modal ou redirecionamento
         console.log('Novo sistema clicado');
+        router.push('/create-system');
     };
+
     return (
         <main className="min-h-screen bg-gray-900 text-gray-100 p-6">
             <div className="max-w-4xl mx-auto">
-                <h1 className="text-4xl font-bold mb-8 text-center">Escolha Seu Sitema RPG</h1>
+                <h1 className="text-4xl font-bold mb-8 text-center">Escolha Seu Sistema RPG</h1>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                     {systems.map((system) => (
@@ -42,7 +47,7 @@ export default function LandingPage() {
                 <div className="text-center">
                     <button
                         className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg"
-                        // onClick={handleNewSystem}
+                        onClick={handleNewSystem}
                     >
                         + Criar Novo Sistema
                     </button>
