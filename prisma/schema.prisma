@@ -1,0 +1,112 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String      @id @default(cuid())
+  name          String?
+  email         String      @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  characters    Character[]
+  systems       System[]
+  campaigns     Campaign[]  @relation("GameMaster")
+  playerIn      Campaign[]  @relation("Players")
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+}
+
+model Character {
+  id         String    @id @default(cuid())
+  name       String
+  data       Json
+  systemId   String
+  system     System    @relation(fields: [systemId], references: [id])
+  userId     String
+  user       User      @relation(fields: [userId], references: [id])
+  campaignId String?
+  campaign   Campaign? @relation(fields: [campaignId], references: [id])
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+}
+
+model System {
+  id          String       @id @default(cuid())
+  name        String
+  description String?
+  config      Json
+  userId      String
+  user        User        @relation(fields: [userId], references: [id])
+  characters  Character[]
+  campaigns   Campaign[]
+  compendia   Compendium[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+model Campaign {
+  id          String      @id @default(cuid())
+  name        String
+  description String?
+  systemId    String
+  system      System      @relation(fields: [systemId], references: [id])
+  gameMasterId String
+  gameMaster   User       @relation("GameMaster", fields: [gameMasterId], references: [id])
+  players      User[]     @relation("Players")
+  characters   Character[]
+  encounters   Encounter[]
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}
+
+model Compendium {
+  id          String    @id @default(cuid())
+  name        String
+  description String?
+  systemId    String
+  system      System    @relation(fields: [systemId], references: [id])
+  monsters    Monster[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Monster {
+  id           String     @id @default(cuid())
+  name         String
+  data         Json
+  compendiumId String
+  compendium   Compendium @relation(fields: [compendiumId], references: [id])
+  encounters   MonsterInEncounter[]
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}
+
+model Encounter {
+  id          String               @id @default(cuid())
+  name        String
+  description String?
+  campaignId  String
+  campaign    Campaign             @relation(fields: [campaignId], references: [id])
+  monsters    MonsterInEncounter[]
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+}
+
+model MonsterInEncounter {
+  id          String    @id @default(cuid())
+  monsterId   String
+  monster     Monster   @relation(fields: [monsterId], references: [id])
+  encounterId String
+  encounter   Encounter @relation(fields: [encounterId], references: [id])
+  quantity    Int      @default(1)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@unique([monsterId, encounterId])
+} 

@@ -1,10 +1,11 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { useApp } from '@/context/AppContext';
+import { Character } from '@/types/character';
 
 export default function CharacterList() {
     const { currentSystem } = useApp();
-    const [characters, setCharacters] = useState<any[]>([]);
+    const [characters, setCharacters] = useState<Character[]>([]);
 
     useEffect(() => {
         const saved = localStorage.getItem('rpg-characters');

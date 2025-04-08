@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, ChangeEvent } from 'react';
 import { rolarDado } from '../utils/rolarDado';
 
 export default function DiceRoller() {
@@ -7,6 +7,10 @@ export default function DiceRoller() {
 
     const handleRoll = () => {
         setResultado(rolarDado(dado));
+    };
+
+    const handleDadoChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setDado(Math.max(2, Number(e.target.value)));
     };
 
     return (
@@ -18,7 +22,7 @@ export default function DiceRoller() {
                     <input
                         type='number'
                         value={dado}
-                        onChange={(e) => setDado(Math.max(2, Number(e.target.value)))}
+                        onChange={handleDadoChange}
                         min='2'
                         className="ml-2 bg-gray-700 text-gray-100 rounded px-2 py-1"
                     />
@@ -33,4 +37,4 @@ export default function DiceRoller() {
             {resultado && <p className="mt-2">Resultado: {resultado}</p>}
         </div>
     );
-}
+} 

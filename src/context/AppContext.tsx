@@ -15,9 +15,9 @@ const AppContext = createContext<AppContextType>({} as AppContextType);
 
 export function AppProvider({ children }: { children: React.ReactNode }) {
     const [currentSystem, setCurrentSystem] = useState('dnd5e');
-    const [customSystems, setCustomSystems] = useState<any[]>([]);
+    const [customSystems, setCustomSystems] = useState<RPGSystem[]>([]);
 
-    const addNewSystem = (system: any) => {
+    const addNewSystem = (system: RPGSystem) => {
         setCustomSystems([...customSystems, system]);
     };
 
