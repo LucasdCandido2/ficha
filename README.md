@@ -14,13 +14,13 @@ Sistema flexível para criação e gerenciamento de fichas de personagens de RPG
 
 ## Tecnologias
 
-- Next.js 14
+- Next.js 15
 - React 18
 - TypeScript
 - Tailwind CSS
 - Prisma
 - PostgreSQL
-- NextAuth.js
+- Auth.js
 
 ## Requisitos
 
@@ -64,12 +64,13 @@ yarn dev
 
 ```
 ficha-personagem-rpg/
-├── app/                    # Páginas da aplicação
-├── components/             # Componentes React
-├── lib/                    # Utilitários e configurações
-├── prisma/                 # Schema e migrações do Prisma
-├── public/                 # Arquivos estáticos
-└── styles/                 # Estilos globais
+├── public/                     # Arquivos estáticos
+└── src/                        # Raiz do código
+    ├── app/                    # Páginas da aplicação
+    ├── components/             # Componentes React
+    ├── lib/                    # Utilitários e configurações
+    ├── prisma/                 # Schema e migrações do Prisma
+    └── styles/                 # Estilos globais
 ```
 
 ## Documentação
