@@ -1,19 +1,24 @@
-import { Metadata } from 'next'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
-import { Badge } from '@/components/ui/badge'
+import type { Metadata } from 'next';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
+import { Badge } from '@/components/ui/badge';
 
 export const metadata: Metadata = {
   title: 'Documentação do Sistema',
   description: 'Guia completo para criação e uso do sistema de RPG',
-}
+};
 
 export default function DocsPage() {
   return (
     <div className="container mx-auto py-8">
       <h1 className="text-4xl font-bold mb-8">Documentação do Sistema</h1>
-      
+
       <Tabs defaultValue="overview" className="w-full">
         <TabsList className="grid w-full grid-cols-5">
           <TabsTrigger value="overview">Visão Geral</TabsTrigger>
@@ -30,9 +35,9 @@ export default function DocsPage() {
             </CardHeader>
             <CardContent>
               <p className="mb-4">
-                Este sistema foi projetado para ser flexível e adaptável a diferentes sistemas de RPG. 
-                A estrutura permite que você crie e gerencie sistemas personalizados, fichas de personagens, 
-                campanhas e encontros.
+                Este sistema foi projetado para ser flexível e adaptável a diferentes sistemas de
+                RPG. A estrutura permite que você crie e gerencie sistemas personalizados, fichas de
+                personagens, campanhas e encontros.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <Card>
@@ -94,7 +99,10 @@ export default function DocsPage() {
                   <AccordionTrigger>Criação do Compendium</AccordionTrigger>
                   <AccordionContent>
                     <div className="space-y-2">
-                      <p>O compendium é onde você armazena todas as informações compartilhadas do sistema.</p>
+                      <p>
+                        O compendium é onde você armazena todas as informações compartilhadas do
+                        sistema.
+                      </p>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                         <Badge variant="outline">Monstros</Badge>
                         <Badge variant="outline">Itens</Badge>
@@ -242,5 +250,5 @@ export default function DocsPage() {
         </TabsContent>
       </Tabs>
     </div>
-  )
-} 
+  );
+}

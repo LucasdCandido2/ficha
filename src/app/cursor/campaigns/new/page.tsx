@@ -1,16 +1,22 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Nav } from '@/components/nav'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Textarea } from '@/components/ui/textarea'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Nav } from '@/components/nav';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { Textarea } from '@/components/ui/textarea';
 
 export default function NewCampaignPage() {
   return (
     <div className="container mx-auto py-8">
       <Nav />
-      
+
       <div className="max-w-2xl mx-auto mt-8">
         <Card>
           <CardHeader>
@@ -25,8 +31,8 @@ export default function NewCampaignPage() {
 
               <div className="space-y-2">
                 <Label htmlFor="description">Descrição</Label>
-                <Textarea 
-                  id="description" 
+                <Textarea
+                  id="description"
                   placeholder="Descreva a história e o mundo da campanha..."
                   className="min-h-[100px]"
                 />
@@ -75,14 +81,12 @@ export default function NewCampaignPage() {
                 <Button variant="outline" type="button">
                   Cancelar
                 </Button>
-                <Button type="submit">
-                  Criar Campanha
-                </Button>
+                <Button type="submit">Criar Campanha</Button>
               </div>
             </form>
           </CardContent>
         </Card>
       </div>
     </div>
-  )
-} 
+  );
+}

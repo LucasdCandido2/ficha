@@ -1,15 +1,21 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Nav } from '@/components/nav'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Nav } from '@/components/nav';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 export default function NewCharacterPage() {
   return (
     <div className="container mx-auto py-8">
       <Nav />
-      
+
       <div className="max-w-2xl mx-auto mt-8">
         <Card>
           <CardHeader>
@@ -89,14 +95,12 @@ export default function NewCharacterPage() {
                 <Button variant="outline" type="button">
                   Cancelar
                 </Button>
-                <Button type="submit">
-                  Criar Personagem
-                </Button>
+                <Button type="submit">Criar Personagem</Button>
               </div>
             </form>
           </CardContent>
         </Card>
       </div>
     </div>
-  )
-} 
+  );
+}
