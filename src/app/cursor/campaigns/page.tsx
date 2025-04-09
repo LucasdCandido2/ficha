@@ -1,17 +1,17 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Nav } from '@/components/nav'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
-import { Plus } from 'lucide-react'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Nav } from '@/components/nav';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Plus } from 'lucide-react';
 
 export default function CampaignsPage() {
   return (
     <div className="container mx-auto py-8">
       <Nav />
-      
+
       <div className="flex justify-between items-center mt-8 mb-4">
         <h1 className="text-2xl font-bold">Campanhas</h1>
-        <Link href="/campaigns/new">
+        <Link href="/cursor/campaigns/new">
           <Button>
             <Plus className="mr-2 h-4 w-4" />
             Nova Campanha
@@ -21,7 +21,7 @@ export default function CampaignsPage() {
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {/* Exemplo de campanha */}
-        <Link href="/campaigns/1">
+        <Link href="/cursor/campaigns/1">
           <Card className="hover:bg-accent transition-colors">
             <CardHeader>
               <CardTitle>A Jornada do Anel</CardTitle>
@@ -40,5 +40,5 @@ export default function CampaignsPage() {
         {/* Adicione mais campanhas aqui */}
       </div>
     </div>
-  )
-} 
+  );
+}
