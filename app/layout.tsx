@@ -1,8 +1,7 @@
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
-import { ThemeProvider } from "next-themes"
-import { AppProvider } from "@/context/AppContext"
 import "./globals.css"
+import { ThemeProvider } from "@/components/theme-provider"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -25,9 +24,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <AppProvider>
-            {children}
-          </AppProvider>
+          {children}
         </ThemeProvider>
       </body>
     </html>

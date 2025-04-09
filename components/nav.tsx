@@ -1,36 +1,53 @@
 'use client'
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { ThemeToggle } from './theme-toggle'
-
-const navigation = [
-  { name: "Dashboard", href: "/" },
-  { name: "Personagens", href: "/characters" },
-  { name: "Campanhas", href: "/campaigns" },
-  { name: "Sistemas", href: "/systems" },
-  { name: "Documentação", href: "/docs" },
-]
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { ThemeToggle } from '@/components/theme-toggle'
 
 export function Nav() {
   const pathname = usePathname()
 
   return (
-    <nav className="flex items-center justify-between">
-      <div className="flex space-x-4">
-        {navigation.map((item) => (
+    <nav className="border-b">
+      <div className="flex h-16 items-center px-4">
+        <div className="flex items-center space-x-4">
           <Link
-            key={item.name}
-            href={item.href}
+            href="/"
             className={`text-sm font-medium transition-colors hover:text-primary ${
-              pathname === item.href ? 'text-primary' : 'text-muted-foreground'
+              pathname === '/' ? 'text-primary' : 'text-muted-foreground'
             }`}
           >
-            {item.name}
+            Início
           </Link>
-        ))}
+          <Link
+            href="/characters"
+            className={`text-sm font-medium transition-colors hover:text-primary ${
+              pathname === '/characters' ? 'text-primary' : 'text-muted-foreground'
+            }`}
+          >
+            Personagens
+          </Link>
+          <Link
+            href="/campaigns"
+            className={`text-sm font-medium transition-colors hover:text-primary ${
+              pathname === '/campaigns' ? 'text-primary' : 'text-muted-foreground'
+            }`}
+          >
+            Campanhas
+          </Link>
+          <Link
+            href="/systems"
+            className={`text-sm font-medium transition-colors hover:text-primary ${
+              pathname === '/systems' ? 'text-primary' : 'text-muted-foreground'
+            }`}
+          >
+            Sistemas
+          </Link>
+        </div>
+        <div className="ml-auto flex items-center space-x-4">
+          <ThemeToggle />
+        </div>
       </div>
-      <ThemeToggle />
     </nav>
   )
 } 
