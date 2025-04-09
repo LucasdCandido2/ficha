@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Card from '../components/Card';
+import { Sword, BookOpen, Users } from 'lucide-react';
 // import router from 'next/router';
 
 const systems = [
@@ -19,7 +20,7 @@ const systems = [
     }
 ];
 
-export default function LandingPage() {
+export default function Home() {
     const router = useRouter();
 
     const handleNewSystem = () => {
@@ -28,31 +29,84 @@ export default function LandingPage() {
     };
 
     return (
-        <main className="min-h-screen bg-gray-900 text-gray-100 p-6">
-            <div className="max-w-4xl mx-auto">
-                <h1 className="text-4xl font-bold mb-8 text-center">Escolha Seu Sistema RPG</h1>
+        <div className="min-h-screen">
+            {/* Hero Section */}
+            <section className="relative py-20 bg-primary text-white">
+                <div className="container mx-auto px-4">
+                    <div className="text-center">
+                        <h1 className="text-4xl md:text-6xl font-bold mb-6 text-accent">
+                            RPG System
+                        </h1>
+                        <p className="text-xl md:text-2xl mb-8">
+                            Gerencie suas campanhas, personagens e sistemas de RPG em um só lugar
+                        </p>
+                        <div className="flex flex-col md:flex-row gap-4 justify-center">
+                            <Link
+                                href="/auth/signup"
+                                className="btn-primary text-lg px-8 py-3"
+                            >
+                                Começar Agora
+                            </Link>
+                            <Link
+                                href="/systems"
+                                className="btn-secondary text-lg px-8 py-3"
+                            >
+                                Explorar Sistemas
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                    {systems.map((system) => (
-                        <Link
-                            key={system.id}
-                            href={`/creator/${system.id}`}
-                            className={`${system.color} p-6 rounded-lg transform transition hover:scale-105`}
-                        >
-                            <h2 className="text-2xl font-bold mb-2">{system.name}</h2>
-                            <p className="text-gray-200">{system.description}</p>
-                        </Link>
-                    ))}
+            {/* Features Section */}
+            <section className="py-20 bg-background">
+                <div className="container mx-auto px-4">
+                    <h2 className="text-3xl font-bold text-center mb-12 text-primary">
+                        Recursos Principais
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div className="card p-6 text-center">
+                            <Sword className="h-12 w-12 mx-auto mb-4 text-accent" />
+                            <h3 className="text-xl font-bold mb-2">Personagens</h3>
+                            <p className="text-gray-600 dark:text-gray-300">
+                                Crie e gerencie seus personagens com facilidade. Mantenha todas as suas fichas organizadas e acessíveis.
+                            </p>
+                        </div>
+                        <div className="card p-6 text-center">
+                            <BookOpen className="h-12 w-12 mx-auto mb-4 text-accent" />
+                            <h3 className="text-xl font-bold mb-2">Sistemas</h3>
+                            <p className="text-gray-600 dark:text-gray-300">
+                                Explore diferentes sistemas de RPG e encontre o que melhor se adapta ao seu estilo de jogo.
+                            </p>
+                        </div>
+                        <div className="card p-6 text-center">
+                            <Users className="h-12 w-12 mx-auto mb-4 text-accent" />
+                            <h3 className="text-xl font-bold mb-2">Campanhas</h3>
+                            <p className="text-gray-600 dark:text-gray-300">
+                                Organize suas campanhas, gerencie jogadores e mantenha o controle da história.
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div className="text-center">
-                    <button
-                        className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg"
-                        onClick={handleNewSystem}
+            </section>
+
+            {/* CTA Section */}
+            <section className="py-20 bg-secondary text-white">
+                <div className="container mx-auto px-4 text-center">
+                    <h2 className="text-3xl font-bold mb-6">
+                        Pronto para começar sua aventura?
+                    </h2>
+                    <p className="text-xl mb-8">
+                        Junte-se a milhares de jogadores e mestres que já estão usando nosso sistema.
+                    </p>
+                    <Link
+                        href="/auth/signup"
+                        className="btn-primary text-lg px-8 py-3"
                     >
-                        + Criar Novo Sistema
-                    </button>
+                        Criar Conta Gratuita
+                    </Link>
                 </div>
-            </div>
-        </main>
+            </section>
+        </div>
     );
 }

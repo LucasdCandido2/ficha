@@ -1,3 +1,6 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,50 +11,55 @@ datasource db {
 }
 
 model User {
-  id            String      @id @default(cuid())
-  name          String?
-  email         String      @unique
-  emailVerified DateTime?
-  image         String?
-  password      String?
-  characters    Character[]
-  systems       System[]
-  campaigns     Campaign[]  @relation("GameMaster")
-  playerIn      Campaign[]  @relation("Players")
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(USER)
+  characters Character[]
+  campaigns  Campaign[] @relation("Players")
+  gameMasterCampaigns Campaign[] @relation("GameMaster")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Character {
-  id         String    @id @default(cuid())
+  id         String    @id @default(uuid())
   name       String
-  data       Json
+  data       Json      // Dados específicos do sistema
   systemId   String
   system     System    @relation(fields: [systemId], references: [id])
   userId     String
   user       User      @relation(fields: [userId], references: [id])
   campaignId String?
   campaign   Campaign? @relation(fields: [campaignId], references: [id])
+  inventory  Inventory?
+  combatStats CombatStats?
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt
 }
 
 model System {
-  id          String       @id @default(cuid())
+  id          String   @id @default(uuid())
   name        String
-  description String?
-  config      Json
-  userId      String
-  user        User        @relation(fields: [userId], references: [id])
+  description String
+  version     String
+  attributes  Json     // Atributos base do sistema
+  skills      Json     // Habilidades do sistema
+  levels      Json     // Sistema de níveis
+  combat      Json     // Regras de combate
+  dice        Json     // Sistema de dados
+  themes      Json     // Temas e estilos
+  rules       Json     // Regras gerais
   characters  Character[]
   campaigns   Campaign[]
-  compendia   Compendium[]
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
+  compendiums Compendium[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model Campaign {
-  id          String      @id @default(cuid())
+  id          String      @id @default(uuid())
   name        String
   description String?
   systemId    String
@@ -66,7 +74,7 @@ model Campaign {
 }
 
 model Compendium {
-  id          String    @id @default(cuid())
+  id          String    @id @default(uuid())
   name        String
   description String?
   systemId    String
@@ -77,9 +85,9 @@ model Compendium {
 }
 
 model Monster {
-  id           String     @id @default(cuid())
+  id           String     @id @default(uuid())
   name         String
-  data         Json
+  data         Json       // Dados específicos do sistema
   compendiumId String
   compendium   Compendium @relation(fields: [compendiumId], references: [id])
   encounters   MonsterInEncounter[]
@@ -87,26 +95,71 @@ model Monster {
   updatedAt    DateTime   @updatedAt
 }
 
+model Inventory {
+  id          String    @id @default(uuid())
+  characterId String    @unique
+  character   Character @relation(fields: [characterId], references: [id])
+  items       Json      // Array de itens com nome, quantidade, peso, etc
+  maxWeight   Float     // Peso máximo que o personagem pode carregar
+  currentWeight Float   // Peso atual carregado
+  currency    Json      // Sistema de moedas/moedas do sistema
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model CombatStats {
+  id          String    @id @default(uuid())
+  characterId String    @unique
+  character   Character @relation(fields: [characterId], references: [id])
+  initiative  Int
+  armorClass  Int
+  hitPoints   Int
+  currentHP   Int
+  speed       Int
+  conditions  Json      // Array de condições ativas
+  resources   Json      // Recursos específicos do sistema (mana, ki, etc)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
 model Encounter {
-  id          String               @id @default(cuid())
+  id          String               @id @default(uuid())
   name        String
   description String?
   campaignId  String
   campaign    Campaign             @relation(fields: [campaignId], references: [id])
   monsters    MonsterInEncounter[]
+  initiative  Json                // Ordem de iniciativa
+  status      EncounterStatus     @default(PLANNED)
   createdAt   DateTime            @default(now())
   updatedAt   DateTime            @updatedAt
 }
 
 model MonsterInEncounter {
-  id          String    @id @default(cuid())
+  id          String    @id @default(uuid())
   monsterId   String
   monster     Monster   @relation(fields: [monsterId], references: [id])
   encounterId String
   encounter   Encounter @relation(fields: [encounterId], references: [id])
   quantity    Int      @default(1)
+  currentHP   Int      // HP atual do monstro
+  conditions  Json     // Array de condições ativas
+  isVisible   Boolean  @default(true) // Se o monstro é visível para os jogadores
+  customData  Json     // Dados adicionais específicos do sistema
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
   @@unique([monsterId, encounterId])
+}
+
+enum Role {
+  ADMIN
+  GAME_MASTER
+  PLAYER
+}
+
+enum EncounterStatus {
+  PLANNED
+  ACTIVE
+  COMPLETED
 } 

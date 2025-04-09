@@ -1,0 +1,17 @@
+{
+  "name": "ficha-prisma",
+  "version": "1.0.0",
+  "description": "Prisma configuration for Ficha project",
+  "main": "index.ts",
+  "scripts": {
+    "generate": "prisma generate",
+    "migrate": "prisma migrate dev",
+    "studio": "prisma studio"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.10.0"
+  },
+  "devDependencies": {
+    "prisma": "^5.10.0"
+  }
+} 

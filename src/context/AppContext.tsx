@@ -1,36 +1,57 @@
 'use client';
 
-import { createContext, useContext, useState } from 'react';
-import { RPGSystem } from '@/types/system';
+import { createContext, useContext, useState, ReactNode } from 'react';
+import { Character } from '@/types/character';
+import { System } from '@/types/system';
 
 interface AppContextType {
-    currentSystem: string;
-    setCurrentSystem: (system: string) => void; // Nome corrigido
-    customSystems: RPGSystem[];
-    addNewSystem: (system: RPGSystem) => void;
+    characters: Character[];
+    systems: System[];
+    campaigns: any[];
+    addCharacter: (character: Character) => void;
+    addSystem: (system: System) => void;
+    addCampaign: (campaign: any) => void;
 }
 
-// Corrigir a criação do contexto
-const AppContext = createContext<AppContextType>({} as AppContextType);
+const AppContext = createContext<AppContextType | undefined>(undefined);
 
-export function AppProvider({ children }: { children: React.ReactNode }) {
-    const [currentSystem, setCurrentSystem] = useState('dnd5e');
-    const [customSystems, setCustomSystems] = useState<RPGSystem[]>([]);
+export function AppProvider({ children }: { children: ReactNode }) {
+    const [characters, setCharacters] = useState<Character[]>([]);
+    const [systems, setSystems] = useState<System[]>([]);
+    const [campaigns, setCampaigns] = useState<any[]>([]);
 
-    const addNewSystem = (system: RPGSystem) => {
-        setCustomSystems([...customSystems, system]);
+    const addCharacter = (character: Character) => {
+        setCharacters([...characters, character]);
+    };
+
+    const addSystem = (system: System) => {
+        setSystems([...systems, system]);
+    };
+
+    const addCampaign = (campaign: any) => {
+        setCampaigns([...campaigns, campaign]);
     };
 
     return (
-        <AppContext.Provider value={{
-            currentSystem,
-            setCurrentSystem,
-            customSystems,
-            addNewSystem
-        }}>
+        <AppContext.Provider
+            value={{
+                characters,
+                systems,
+                campaigns,
+                addCharacter,
+                addSystem,
+                addCampaign,
+            }}
+        >
             {children}
         </AppContext.Provider>
     );
 }
 
-export const useApp = () => useContext(AppContext);
+export function useApp() {
+    const context = useContext(AppContext);
+    if (context === undefined) {
+        throw new Error('useApp must be used within an AppProvider');
+    }
+    return context;
+}
