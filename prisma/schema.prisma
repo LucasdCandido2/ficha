@@ -10,21 +10,66 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
 model User {
-  id        String   @id @default(uuid())
-  name      String
-  email     String   @unique
-  password  String
-  role      Role     @default(USER)
-  characters Character[]
-  campaigns  Campaign[] @relation("Players")
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  role          Role      @default(USER)
+  accounts      Account[]
+  sessions      Session[]
+  characters    Character[]
+  campaigns     Campaign[] @relation("Players")
   gameMasterCampaigns Campaign[] @relation("GameMaster")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+enum Role {
+  USER
+  ADMIN
+  GAME_MASTER
 }
 
 model Character {
-  id         String    @id @default(uuid())
+  id         String    @id @default(cuid())
   name       String
   data       Json      // Dados específicos do sistema
   systemId   String
@@ -40,7 +85,7 @@ model Character {
 }
 
 model System {
-  id          String   @id @default(uuid())
+  id          String   @id @default(cuid())
   name        String
   description String
   version     String
@@ -59,7 +104,7 @@ model System {
 }
 
 model Campaign {
-  id          String      @id @default(uuid())
+  id          String      @id @default(cuid())
   name        String
   description String?
   systemId    String
@@ -74,7 +119,7 @@ model Campaign {
 }
 
 model Compendium {
-  id          String    @id @default(uuid())
+  id          String    @id @default(cuid())
   name        String
   description String?
   systemId    String
@@ -85,7 +130,7 @@ model Compendium {
 }
 
 model Monster {
-  id           String     @id @default(uuid())
+  id           String     @id @default(cuid())
   name         String
   data         Json       // Dados específicos do sistema
   compendiumId String
@@ -96,70 +141,52 @@ model Monster {
 }
 
 model Inventory {
-  id          String    @id @default(uuid())
+  id          String    @id @default(cuid())
   characterId String    @unique
   character   Character @relation(fields: [characterId], references: [id])
-  items       Json      // Array de itens com nome, quantidade, peso, etc
-  maxWeight   Float     // Peso máximo que o personagem pode carregar
-  currentWeight Float   // Peso atual carregado
-  currency    Json      // Sistema de moedas/moedas do sistema
+  items       Json      // Lista de itens
+  gold        Int       @default(0)
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 }
 
 model CombatStats {
-  id          String    @id @default(uuid())
+  id          String    @id @default(cuid())
   characterId String    @unique
   character   Character @relation(fields: [characterId], references: [id])
-  initiative  Int
-  armorClass  Int
-  hitPoints   Int
-  currentHP   Int
-  speed       Int
-  conditions  Json      // Array de condições ativas
-  resources   Json      // Recursos específicos do sistema (mana, ki, etc)
+  stats       Json      // Estatísticas de combate
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 }
 
 model Encounter {
-  id          String               @id @default(uuid())
+  id          String    @id @default(cuid())
   name        String
   description String?
   campaignId  String
-  campaign    Campaign             @relation(fields: [campaignId], references: [id])
+  campaign    Campaign  @relation(fields: [campaignId], references: [id])
   monsters    MonsterInEncounter[]
-  initiative  Json                // Ordem de iniciativa
-  status      EncounterStatus     @default(PLANNED)
-  createdAt   DateTime            @default(now())
-  updatedAt   DateTime            @updatedAt
+  status      EncounterStatus @default(PLANNED)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model MonsterInEncounter {
-  id          String    @id @default(uuid())
+  id          String    @id @default(cuid())
   monsterId   String
   monster     Monster   @relation(fields: [monsterId], references: [id])
   encounterId String
   encounter   Encounter @relation(fields: [encounterId], references: [id])
-  quantity    Int      @default(1)
-  currentHP   Int      // HP atual do monstro
-  conditions  Json     // Array de condições ativas
-  isVisible   Boolean  @default(true) // Se o monstro é visível para os jogadores
-  customData  Json     // Dados adicionais específicos do sistema
+  quantity    Int       @default(1)
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 
   @@unique([monsterId, encounterId])
 }
 
-enum Role {
-  ADMIN
-  GAME_MASTER
-  PLAYER
-}
-
 enum EncounterStatus {
   PLANNED
-  ACTIVE
+  IN_PROGRESS
   COMPLETED
+  CANCELLED
 } 

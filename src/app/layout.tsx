@@ -1,11 +1,12 @@
 // src/app/layout.tsx
 import type { Metadata } from 'next';
 import { MedievalSharp } from 'next/font/google';
-import { Providers } from '@/components/providers';
+import { Providers } from './providers';
 import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/layout/footer';
 import { cn } from '@/lib/utils';
 import '@/styles/globals.css';
+import { ThemeProvider } from '@/components/theme-provider'
 
 const medievalSharp = MedievalSharp({
   subsets: ['latin'],
@@ -21,7 +22,6 @@ export const metadata: Metadata = {
   description: 'Sistema de gerenciamento de fichas de RPG',
 };
 
-// Exporte apenas o RootLayout como default export
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -30,13 +30,15 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="scroll-smooth" suppressHydrationWarning>
       <body className={cn('antialiased', medievalSharp.className)}>
-        <Providers>
-          <div className="min-h-screen flex flex-col">
-            <Navbar />
-            <main className="flex-grow container mx-auto px-4 py-8">{children}</main>
-            <Footer />
-          </div>
-        </Providers>
+        <ThemeProvider>
+          <Providers>
+            <div className="min-h-screen flex flex-col">
+              <Navbar />
+              <main className="flex-grow container mx-auto px-4 py-8">{children}</main>
+              <Footer />
+            </div>
+          </Providers>
+        </ThemeProvider>
       </body>
     </html>
   );
